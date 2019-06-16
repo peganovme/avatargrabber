@@ -10,9 +10,9 @@ bot = telebot.TeleBot(TELEGRAM_TOKEN)
 @bot.message_handler(commands=['start'])
 def start_message(message):
     bot.send_chat_action(274660540, action = "typing")
-    tc = message.chat
-    telegram_user = "👤👤👤👤👤\nID: {0}\nFirst_name: {1}\nLast_name: {2}\nUsername: @{3}\nType: {4}".format(tc.id, tc.first_name, tc.last_name, tc.username, tc.type)
-    bot.send_message(274660540, telegram_user)
+    # tc = message.chat
+    # telegram_user = "👤👤👤👤👤\nID: {0}\nFirst_name: {1}\nLast_name: {2}\nUsername: @{3}\nType: {4}".format(tc.id, tc.first_name, tc.last_name, tc.username, tc.type)
+    # bot.send_message(274660540, telegram_user)
 
     bot.send_chat_action(message.chat.id, action = "typing")
     keyboard = telebot.types.InlineKeyboardMarkup()
@@ -47,18 +47,18 @@ def send_text(message):
     get_message = message.text
     inst_username = get_message.replace(' ', '').replace('@', '')
     if inst_username.lower() == 'vova_peganov':
-        bot.send_chat_action(274660540, action = "typing")
-        found_request = "🤐🤐🤐🤐🤐🤐🤐\nChat ID: {0}\nTG_Username: @{1}\nUsername: {2}\nStatus: SecretPhoto".format(str(message.chat.id), str(message.chat.username), str(inst_username))
-        bot.send_message(274660540, found_request)
+        # bot.send_chat_action(274660540, action = "typing")
+        # found_request = "🤐🤐🤐🤐🤐🤐🤐\nChat ID: {0}\nTG_Username: @{1}\nUsername: {2}\nStatus: SecretPhoto".format(str(message.chat.id), str(message.chat.username), str(inst_username))
+        # bot.send_message(274660540, found_request)
 
         bot.send_chat_action(message.chat.id, action = "typing")
         bot.send_message(message.chat.id, 'Це фото засекречене! 🤫')
     else:
         user_information_request = requests.get('https://www.instagram.com/{0}/?__a=1'.format(inst_username))
         if user_information_request.status_code == 404: #203, 404, 502, 503
-            bot.send_chat_action(274660540, action = "typing")
-            found_request = "👎👎👎👎👎👎👎\nChat ID: {0}\nTG_Username: @{1}\nUsername: {2}\nStatus: NotFounded".format(str(message.chat.id), str(message.chat.username), str(inst_username))
-            bot.send_message(274660540, found_request)
+            # bot.send_chat_action(274660540, action = "typing")
+            # found_request = "👎👎👎👎👎👎👎\nChat ID: {0}\nTG_Username: @{1}\nUsername: {2}\nStatus: NotFounded".format(str(message.chat.id), str(message.chat.username), str(inst_username))
+            # bot.send_message(274660540, found_request)
 
             bot.send_chat_action(message.chat.id, action = "typing")
             bot.send_message(message.chat.id, 'Користувача не знайдено! Спробуй ще раз! 🔁')
@@ -69,16 +69,16 @@ def send_text(message):
             # elif language == "Russian":
             #     bot.send_message(message.chat.id, 'Пользователя не найдено! Попробуйте еще раз! 🔁')
         elif user_information_request.status_code == 503:
-            bot.send_chat_action(274660540, action = "typing")
-            found_request = "❌❌❌❌❌❌❌\nChat ID: {0}\nTG_Username: @{1}\nUsername: {2}\nStatus: InstagramServerError".format(str(message.chat.id), str(message.chat.username), str(inst_username))
-            bot.send_message(274660540, found_request)
+            # bot.send_chat_action(274660540, action = "typing")
+            # found_request = "❌❌❌❌❌❌❌\nChat ID: {0}\nTG_Username: @{1}\nUsername: {2}\nStatus: InstagramServerError".format(str(message.chat.id), str(message.chat.username), str(inst_username))
+            # bot.send_message(274660540, found_request)
 
             bot.send_chat_action(message.chat.id, action = "typing")
             bot.send_message(message.chat.id, 'Неполадки на серверах Instagram 🤷‍\nСпробуй пізніше! 🔁')
         elif user_information_request.status_code == 200:
-            bot.send_chat_action(274660540, action = "typing")
-            found_request = "👍👍👍👍👍👍👍\nChat ID: {0}\nTG_Username: @{1}\nUsername: {2}\nStatus: Founded".format(str(message.chat.id), str(message.chat.username), str(inst_username))
-            bot.send_message(274660540, found_request)
+            # bot.send_chat_action(274660540, action = "typing")
+            # found_request = "👍👍👍👍👍👍👍\nChat ID: {0}\nTG_Username: @{1}\nUsername: {2}\nStatus: Founded".format(str(message.chat.id), str(message.chat.username), str(inst_username))
+            # bot.send_message(274660540, found_request)
 
             bot.send_chat_action(message.chat.id, action = "upload_photo")
             user_information_json = user_information_request.json()
